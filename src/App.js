@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React, {useState} from "react";
 import './App.css';
 
+//Components
+import Map from './Map';
+import SearchBox from './SearchBox';
+
 function App() {
+
+  const [coordinates, setCoordinates] = useState({
+        lat: null,
+        lng: null,
+    });
+
+    const handleCoordinates = (value) => {
+      setCoordinates(value);
+    };
+    
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="search">
+      <SearchBox coordinates={coordinates} setCoordinates={handleCoordinates}/>
+      </div>
+      <div className="map">
+        <Map coodinates={coordinates} />
+      </div>
+      
     </div>
   );
+
 }
 
 export default App;
